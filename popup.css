@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    background-color: #FFFFFF;
+    height: 200px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #FFA500;
+    color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FF8C00;
+    border: 2px solid crimson;
+    color: crimson;
+}
+
+h1 {
+    font-size:  20px;
+}
+
+button:active {
+    background-color: crimson;
+    color: #FF8C00;
+    border: 2px solid black;
+}

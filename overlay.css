@@ -1,0 +1,41 @@
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  display: none;
+  flex-direction: column;
+}
+
+#overlay__top, #overlay__bottom {
+  width: 100%;
+  display: block;
+}
+
+#overlay__top {
+  height: 50px;
+}
+
+#overlay__bottom { 
+  bottom: 0;
+}
+
+.blocked-content {
+  filter: blur(3px);
+  background-color: rgba(125, 125, 125, 0.85);
+  position: fixed;
+  left: 0;
+}
+
+
+.section-container {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  background-color: transparent;
+  border: 2px solid crimson;
+  z-index: -1;
+}
+

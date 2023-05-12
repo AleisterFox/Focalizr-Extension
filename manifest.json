@@ -1,0 +1,30 @@
+{
+    "name": "TDAH Fox",
+    "version": "1.0",
+    "description": "Extensión para aislar secciones de una página web y facilitar la lectura para personas con TDAH",
+    "manifest_version": 3,
+    "icons": {
+      "128": "icono128.png"
+    },
+    "permissions": [
+      "activeTab",
+      "declarativeContent",
+      "scripting",
+      "tabs"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*/*",
+      "https://bard.google.com/?hl=en"],
+        "js": ["contentScript.js"]
+      }
+    ],
+    "action": {
+      "default_icon":"icono128.png",
+      "default_popup": "popup.html"
+    }
+  }
+  
