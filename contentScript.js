@@ -21,12 +21,13 @@ document.body.appendChild(overlay);
 const overlayTop = document.createElement('div');
 overlayTop.setAttribute('id', 'overlay__top');
 overlayTop.classList.add('blocked-content');
+overlayTop.style.height = '0px';
 overlay.appendChild(overlayTop);
 
 // Crear contenedor y agregarlo al overlay
 const container = document.createElement('div');
 container.classList.add('section-container');
-container.style.height = '100px';
+container.style.height = '0px';
 overlay.appendChild(container);
 
 // Crear sección inferior y agregarla al overlay
@@ -34,7 +35,7 @@ const overlayBottom = document.createElement('div');
 overlayBottom.setAttribute('id', 'overlay__bottom');
 overlayBottom.classList.add('blocked-content');
 const overlayBottomHeight = vhToPx(100);
-overlayBottom.style.height = `${overlayBottomHeight}px`;
+overlayBottom.style.height = `0px`;
 overlay.appendChild(overlayBottom);
 
 
@@ -49,7 +50,10 @@ chrome.runtime.onMessage.addListener(function (message) {
             chrome.runtime.sendMessage({ action: "overlay_on" });
             
             overlay.style.display = 'flex';
-
+            overlayTop.style.height = '50px';
+            container.style.height = '100px';
+            overlayBottom.style.height = `${overlayBottomHeight}px`;
+            overlay.style.height = '100vh';
             // Mover el contenedor alrededor del cursor
             document.addEventListener('mousemove', function (e) {
                 overlayBottom.style.height = `${overlayBottomHeight}px`;
