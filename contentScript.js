@@ -13,22 +13,23 @@ function vhToPx(vh) {
 }
 
 // Crear el elemento overlay y bloquear el contenido
-const overlay = document.createElement('div');
-overlay.setAttribute('id', 'overlay');
-document.body.appendChild(overlay);
+const extensionOverlay = document.createElement('div');
+extensionOverlay.setAttribute('id', 'extension__overlay');
+extensionOverlay.style.height = '0px';
+document.body.appendChild(extensionOverlay);
 
 // Crear sección superior y agregarla al overlay
 const overlayTop = document.createElement('div');
 overlayTop.setAttribute('id', 'overlay__top');
 overlayTop.classList.add('blocked-content');
 overlayTop.style.height = '0px';
-overlay.appendChild(overlayTop);
+extensionOverlay.appendChild(overlayTop);
 
 // Crear contenedor y agregarlo al overlay
 const container = document.createElement('div');
 container.classList.add('section-container');
 container.style.height = '0px';
-overlay.appendChild(container);
+extensionOverlay.appendChild(container);
 
 // Crear sección inferior y agregarla al overlay
 const overlayBottom = document.createElement('div');
@@ -36,7 +37,7 @@ overlayBottom.setAttribute('id', 'overlay__bottom');
 overlayBottom.classList.add('blocked-content');
 const overlayBottomHeight = vhToPx(100);
 overlayBottom.style.height = `0px`;
-overlay.appendChild(overlayBottom);
+extensionOverlay.appendChild(overlayBottom);
 
 
 
@@ -49,11 +50,11 @@ chrome.runtime.onMessage.addListener(function (message) {
             activeOverlay = true;
             chrome.runtime.sendMessage({ action: "overlay_on" });
             
-            overlay.style.display = 'flex';
+            extensionOverlay.style.display = 'flex';
             overlayTop.style.height = '50px';
             container.style.height = '100px';
             overlayBottom.style.height = `${overlayBottomHeight}px`;
-            overlay.style.height = '100vh';
+            extensionOverlay.style.height = '100vh';
             // Mover el contenedor alrededor del cursor
             document.addEventListener('mousemove', function (e) {
                 overlayBottom.style.height = `${overlayBottomHeight}px`;
@@ -75,7 +76,8 @@ chrome.runtime.onMessage.addListener(function (message) {
             activeOverlay = false;
             chrome.runtime.sendMessage({ action: "overlay_off" });
             
-            overlay.style.display = 'none';
+            extensionOverlay.style.display = 'none';
+            extensionOverlay.style.height = '0px';
 
         }
     }
